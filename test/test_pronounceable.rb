@@ -12,13 +12,13 @@ class TestPronounceable < Test::Unit::TestCase
 
     should 'check good words as pronounceable' do
       @good_words.each do |word|
-        assert word.pronounceable?
+        assert word.pronounceable?, "#{word} should be pronounceable"
       end
     end
 
     should 'check bad words as not pronounceable' do
       @bad_words.each do |word|
-        assert !word.pronounceable?
+        assert !word.pronounceable?, "#{word} should not be pronounceable"
       end
     end
 
