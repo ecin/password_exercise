@@ -1,9 +1,12 @@
 SaaSure Passwords: for a more secure peace of mind
 
-Requires: Ruby 1.9.2
+Requires: Ruby 1.8.7 (though to run the tests Ruby 1.9.2 is needed)
 Suggestions: Look through (short) git history to see how development took place.
 
-To install library dependencies in a Ruby environment:
+To run:
+bin/pronounce <input_file>
+
+To install library dependencies in a Ruby environment (only necessary to run tests):
 gem install bundler
 bundle install
 

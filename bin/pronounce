@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require File.expand_path('../lib/pronounceable.rb', File.dirname(__FILE__))
+class String; include Pronounceable; end
+
+if ARGV[0].nil?
+  puts "Usage: pronounce <input_file>"
+  exit 1
+end
+
+input = File.open(ARGV[0])
+
+input.each_line do |line|
+  word = line.chomp
+  return if word == 'end'
+  puts "<#{word}> #{word.pronounceable? ? 'is' : 'is not'} acceptable.\n"
+end
