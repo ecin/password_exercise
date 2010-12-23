@@ -1,0 +1,27 @@
+SaaSure Passwords: for a more secure peace of mind
+
+Requires: Ruby 1.9.2
+Suggestions: Look through (short) git history to see how development took place.
+
+To install library dependencies in a Ruby environment:
+gem install bundler
+bundle install
+
+To run tests:
+ruby -Ilib -Itest test/test_pronounceable.rb
+
+Summary of thought process:
+Since there are two hard things in computer science, and this exercise doesn't
+deal with caches, my first thought was what to call the class. Ruby modules tend
+to end in -able, so Pronounceable sounded great. Could include the module in the
+String class and all would be well.
+
+Second priority was getting working code, and best way to make sure code works
+as expected is to write tests. These were running in the background as I wrote out
+the module.
+
+Once the initial naive implementation using regular expressions was over, I benchmarked
+it. This would serve as a point of comparison to see if iterating over each character
+in the password string to verify it would be faster than using regexps.
+
+In the end, turned out it was. Merge the pseudo-state-machine branch into master and done.
