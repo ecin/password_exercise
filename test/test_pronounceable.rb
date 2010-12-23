@@ -21,20 +21,28 @@ class TestPronounceable < Test::Unit::TestCase
         assert !word.pronounceable?, "#{word} should not be pronounceable"
       end
     end
-  end
 
-  context 'large input file' do
-    setup do
-      @input = File.open "#{File.dirname(__FILE__)}/say.in"
-      @expected_output = File.open "#{File.dirname(__FILE__)}/say.out"
-    end
-    should 'produce expected large output file' do
-      results = ''
-      @input.each_line do |word|
-        word = word.chomp
-        results += "<#{word}> #{word.pronounceable? ? 'is' : 'is not'} acceptable.\n"
+    context 'large input file' do
+      setup do
+        @input = File.open "#{File.dirname(__FILE__)}/say.in"
+        @expected_output = File.open "#{File.dirname(__FILE__)}/say.out"
       end
-      assert_equal results, @expected_output.read
+      should 'produce expected large output file' do
+        results = ''
+        @input.each_line do |word|
+          word = word.chomp
+          results += "<#{word}> #{word.pronounceable? ? 'is' : 'is not'} acceptable.\n"
+        end
+        assert_equal results, @expected_output.read
+      end
+    end
+
+    should 'perform linearly' do
+      assert_performance_linear 0.9999 do |range|
+        range.times do
+          @bad_words.map(&:pronounceable?)
+        end
+      end
     end
   end
 end
